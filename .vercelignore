@@ -1,0 +1,6 @@
+server.log
+node_modules
+.vercel
+COMO-CRIAR-UM-JOGO.md
+.env.local
+server.js

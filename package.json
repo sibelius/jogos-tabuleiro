@@ -1,0 +1,12 @@
+{
+  "name": "mesa-de-jogos",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Jogos de tabuleiro para jogar com a família — no mesmo aparelho, online ou contra o computador.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

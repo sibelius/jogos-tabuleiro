@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "outputDirectory": "public",
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "{games,lib,public/games}/**"
+    }
+  },
+  "framework": null,
+  "buildCommand": "",
+  "rewrites": [
+    {
+      "source": "/api/:rota*",
+      "destination": "/api/index?__rota=:rota*"
+    }
+  ]
+}

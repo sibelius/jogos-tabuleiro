@@ -1,0 +1,110 @@
+:root {
+  --fundo: #fff8ee;
+  --tinta: #2b2140;
+  --roxo: #6c4cff;
+  --rosa: #ff5c8a;
+  --verde: #22b573;
+  --amarelo: #ffc93c;
+  --cartao: #ffffff;
+  --sombra: 0 4px 0 rgba(43, 33, 64, .15);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: 'Fredoka', system-ui, sans-serif; color: var(--tinta); background: var(--fundo);
+  background-image: radial-gradient(circle at 10% 10%, #ffe6f0 0, transparent 40%), radial-gradient(circle at 90% 80%, #e6f0ff 0, transparent 40%);
+  background-attachment: fixed; min-height: 100vh;
+}
+.hidden { display: none !important; }
+a { color: inherit; }
+
+.topo { display: flex; align-items: center; gap: 12px; padding: 12px 20px; background: white; box-shadow: var(--sombra); position: sticky; top: 0; z-index: 30; }
+.marca { font-size: 1.6rem; font-weight: 700; text-decoration: none; color: var(--roxo); }
+.espaco { flex: 1; }
+.entrar-codigo { display: flex; gap: 6px; }
+.entrar-codigo input { width: 110px; text-transform: uppercase; letter-spacing: 3px; text-align: center; }
+
+input, select {
+  font-family: inherit; font-size: 1.05rem; padding: 10px 14px; border-radius: 12px; border: 3px solid #e3dcf5; outline: none; background: white; color: var(--tinta);
+}
+input:focus { border-color: var(--roxo); }
+
+.btn {
+  font-family: inherit; font-weight: 600; font-size: 1rem; cursor: pointer; border: none; border-radius: 12px;
+  padding: 10px 18px; background: var(--roxo); color: white; box-shadow: 0 4px 0 #4a2fd1; transition: transform .08s, box-shadow .08s;
+}
+.btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #4a2fd1; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn.rosa { background: var(--rosa); box-shadow: 0 4px 0 #d63866; }
+.btn.verde { background: var(--verde); box-shadow: 0 4px 0 #168a56; }
+.btn.branco { background: white; color: var(--tinta); box-shadow: 0 4px 0 #ddd3ef; border: 2px solid #ece6f7; }
+.btn.grande { font-size: 1.25rem; padding: 14px 26px; }
+
+main { max-width: 1200px; margin: 0 auto; padding: 24px 16px 60px; }
+
+/* ===== HOME ===== */
+.boas-vindas { text-align: center; margin-bottom: 26px; }
+.boas-vindas h1 { font-size: 2.6rem; margin: 0 0 6px; }
+.boas-vindas .nome { display: inline-flex; gap: 8px; align-items: center; margin-top: 10px; }
+.lista-jogos { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; }
+.card-jogo {
+  background: white; border-radius: 22px; padding: 22px; cursor: pointer; box-shadow: var(--sombra);
+  border: 3px solid transparent; transition: transform .15s, border-color .15s;
+}
+.card-jogo:hover { transform: translateY(-4px); border-color: var(--roxo); }
+.card-jogo .emoji { font-size: 3.2rem; }
+.card-jogo h3 { margin: 8px 0 4px; font-size: 1.4rem; }
+.card-jogo p { margin: 0 0 10px; opacity: .75; }
+.card-jogo .tag { display: inline-block; background: #f1ecff; color: var(--roxo); border-radius: 999px; padding: 3px 10px; font-size: .85rem; font-weight: 600; }
+.em-breve { opacity: .5; text-align: center; margin-top: 20px; }
+
+/* ===== MODAL ===== */
+.modal { position: fixed; inset: 0; background: rgba(30, 20, 50, .5); display: grid; place-items: center; z-index: 100; padding: 16px; }
+.modal-caixa { background: white; border-radius: 24px; padding: 26px; width: 100%; max-width: 480px; animation: pula .25s ease-out; max-height: 90vh; overflow: auto; }
+@keyframes pula { from { transform: scale(.85); opacity: 0; } }
+.modal-caixa h2 { margin-top: 0; }
+.opcoes { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 16px; }
+.opcoes .btn.ativo { background: var(--amarelo); color: var(--tinta); box-shadow: 0 4px 0 #d9a312; }
+.assento-linha { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.bolinha { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; border: 3px solid white; box-shadow: 0 0 0 2px rgba(0,0,0,.1); }
+.acoes-modal { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; flex-wrap: wrap; }
+
+/* ===== SALA ===== */
+.sala-topo { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.sala-topo h2 { margin: 0; font-size: 1.7rem; }
+.codigo-sala { background: var(--tinta); color: white; border-radius: 10px; padding: 4px 12px; letter-spacing: 3px; font-weight: 700; }
+.jogadores { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.jogador {
+  display: flex; align-items: center; gap: 8px; background: white; border-radius: 999px; padding: 6px 14px 6px 8px;
+  box-shadow: var(--sombra); border: 3px solid transparent; font-weight: 600;
+}
+.jogador.vez { border-color: var(--amarelo); animation: brilha 1.2s ease-in-out infinite; }
+@keyframes brilha { 50% { box-shadow: 0 0 0 6px rgba(255, 201, 60, .35); } }
+.jogador.eu::after { content: '(você)'; font-weight: 400; opacity: .6; font-size: .85rem; }
+.jogador.off { opacity: .5; }
+.jogador .pts { background: #f1ecff; border-radius: 999px; padding: 0 8px; font-size: .9rem; }
+.status { font-size: 1.2rem; font-weight: 600; margin: 0 0 14px; min-height: 1.6em; }
+.status.minha-vez { color: var(--verde); }
+.area-jogo { background: white; border-radius: 24px; padding: 18px; box-shadow: var(--sombra); min-height: 300px; }
+
+.espera { text-align: center; padding: 30px 10px; }
+.espera .grande-emoji { font-size: 4rem; }
+.link-compartilhar { background: #f6f2ff; border-radius: 14px; padding: 12px; margin: 14px auto; max-width: 560px; word-break: break-all; font-weight: 600; }
+.lista-espera { display: flex; flex-direction: column; gap: 8px; max-width: 320px; margin: 16px auto; text-align: left; }
+
+.fim-jogo { position: fixed; inset: 0; display: grid; place-items: center; background: rgba(30, 20, 50, .45); z-index: 90; padding: 16px; }
+.fim-jogo .caixa { background: white; border-radius: 28px; padding: 30px; text-align: center; max-width: 420px; width: 100%; animation: pula .3s ease-out; }
+.fim-jogo .trofeu { font-size: 4.5rem; }
+.fim-jogo h2 { margin: 6px 0; font-size: 1.8rem; }
+
+#toasts { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 200; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.toast { background: var(--tinta); color: white; padding: 10px 18px; border-radius: 14px; font-weight: 600; animation: pula .2s; }
+
+.confete { position: fixed; top: -30px; font-size: 1.8rem; pointer-events: none; z-index: 95; animation: cai linear forwards; }
+@keyframes cai { to { transform: translateY(110vh) rotate(720deg); } }
+
+.assento-config { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.opcoes.modos .btn { padding: 7px 10px; font-size: .9rem; }
+.nome-local { padding: 7px 12px; font-size: .95rem; }
+.dica-modos { font-size: .85rem; opacity: .7; margin: 4px 0 0; }
+.assento-linha { align-items: flex-start; }
+.assento-linha .bolinha { margin-top: 8px; }

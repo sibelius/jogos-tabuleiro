@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mesa de Jogos</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topo">
+  <a href="/" class="marca">🎲 Mesa de Jogos</a>
+  <div class="espaco"></div>
+  <form id="form-codigo" class="entrar-codigo">
+    <input id="input-codigo" placeholder="CÓDIGO" maxlength="4" autocomplete="off">
+    <button class="btn">Entrar</button>
+  </form>
+</header>
+
+<main id="app"></main>
+
+<div id="modal" class="modal hidden"><div class="modal-caixa" id="modal-caixa"></div></div>
+<div id="toasts"></div>
+
+<script src="/mesa.js"></script>
+</body>
+</html>
