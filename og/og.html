@@ -1,0 +1,78 @@
+<!doctype html>
+<!-- Cartão de compartilhamento (public/og.png, 1200x630). Fica fora de public/,
+     então não é publicado. Para regerar:
+       npx -y playwright@latest screenshot --viewport-size=1200,630 --wait-for-timeout=1500 "file://$PWD/og/og.html" public/og.png
+       npx -y playwright@latest screenshot --viewport-size=180,180 "file://$PWD/og/apple-touch-icon.html" public/apple-touch-icon.png -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --fundo: #fff8ee; --tinta: #2b2140; --roxo: #6c4cff; --rosa: #ff5c8a; --verde: #22b573; --amarelo: #ffc93c; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative; font-family: 'Fredoka', system-ui, sans-serif; color: var(--tinta); background: var(--fundo);
+    background-image: radial-gradient(circle at 8% 12%, #ffe6f0 0, transparent 42%), radial-gradient(circle at 92% 88%, #e6f0ff 0, transparent 45%);
+  }
+  .marca { position: absolute; left: 72px; top: 58px; display: flex; align-items: center; gap: 14px; font-size: 34px; font-weight: 700; color: var(--roxo); }
+  .marca img { width: 52px; height: 52px; }
+
+  .texto { position: absolute; left: 72px; top: 160px; width: 560px; }
+  h1 { font-size: 66px; line-height: 1.02; font-weight: 700; letter-spacing: -0.5px; }
+  h1 em { font-style: normal; color: var(--rosa); }
+  .sub { margin-top: 20px; font-size: 26px; line-height: 1.35; font-weight: 500; opacity: .75; }
+
+  .jogos { position: absolute; left: 72px; bottom: 52px; display: flex; gap: 10px; flex-wrap: wrap; width: 600px; }
+  .tag { background: white; border-radius: 999px; padding: 8px 18px; font-size: 21px; font-weight: 600; color: var(--roxo);
+    box-shadow: 0 4px 0 rgba(43,33,64,.12); white-space: nowrap; }
+
+  /* Tabuleiro de Lig 4, igual ao do jogo (public/games/lig4.js) */
+  .tab { position: absolute; right: 64px; top: 92px; width: 476px; display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px;
+    background: #3a5bff; padding: 14px; border-radius: 26px; box-shadow: 0 10px 0 #2139c4, 0 24px 50px rgba(33,57,196,.25); transform: rotate(-3deg); }
+  .cel { aspect-ratio: 1; border-radius: 50%; background: var(--fundo); box-shadow: inset 0 4px 0 rgba(0,0,0,.15); }
+  .v { background: #ff4d6d; box-shadow: inset 0 -4px 0 rgba(0,0,0,.18); }
+  .a { background: #ffc93c; box-shadow: inset 0 -4px 0 rgba(0,0,0,.14); }
+  .ganhou { outline: 4px solid white; outline-offset: -2px; }
+  .cai { position: absolute; right: 186px; top: 24px; width: 56px; height: 56px; border-radius: 50%; background: #ffc93c;
+    box-shadow: inset 0 -5px 0 rgba(0,0,0,.14), 0 6px 14px rgba(0,0,0,.12); }
+  .dado { position: absolute; right: 470px; bottom: 54px; font-size: 76px; transform: rotate(-14deg); filter: drop-shadow(0 6px 8px rgba(0,0,0,.15)); }
+  .peao { position: absolute; right: 70px; bottom: 40px; font-size: 64px; transform: rotate(10deg); filter: drop-shadow(0 6px 8px rgba(0,0,0,.15)); }
+</style>
+</head>
+<body>
+  <div class="marca"><img src="../public/favicon.svg" alt="">Mesa de Jogos</div>
+
+  <div class="texto">
+    <h1>Jogos de tabuleiro para jogar em <em>família</em></h1>
+    <p class="sub">No mesmo aparelho, online com quem você ama ou contra o computador.</p>
+  </div>
+
+  <div class="jogos">
+    <span class="tag">🔴 Lig 4</span><span class="tag">🎲 Ludo</span><span class="tag">⚪ Damas</span>
+    <span class="tag">⚫ Reversi</span><span class="tag">🟦 Pontinhos</span><span class="tag">🎨 Histórias</span>
+  </div>
+
+  <div class="cai"></div>
+  <div class="tab" id="tab"></div>
+  <div class="dado">🎲</div>
+  <div class="peao">♟️</div>
+
+<script>
+  // 6 linhas x 7 colunas, de cima para baixo. v = vermelho, a = amarelo, * = parte da vitória.
+  const B = [
+    '.......',
+    '.......',
+    '....*..',
+    '...*a..',
+    '..*ava.',
+    'a*aavv.',
+  ];  const t = document.getElementById('tab');
+  for (const linha of B) for (const c of linha) {
+    const d = document.createElement('div');
+    d.className = 'cel' + (c === 'v' ? ' v' : c === 'a' ? ' a' : c === '*' ? ' v ganhou' : '');
+    t.appendChild(d);
+  }
+</script>
+</body>
+</html>
